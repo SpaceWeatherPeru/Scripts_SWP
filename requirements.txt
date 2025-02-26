@@ -1,4 +1,6 @@
 pandas
 matplotlib
 numpy
-bs4
+cartopy
+netCDF4
+beautifulsoup4
