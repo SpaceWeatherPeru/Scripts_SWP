@@ -79,11 +79,8 @@ def update_data():
         return
 
     try:
-        max_length = max(len(lst) for lst in values) if values else 0
-        for lst in values:
-            while len(lst) < max_length:
-                lst.append(np.nan)
-        df = pd.DataFrame(values, columns=[f'Column {i+1}' for i in range(max_length)])
+        df = pd.DataFrame(values)
+        df = df.dropna(how='all', axis=1)  # Elimina columnas completamente vacías
         print("DataFrame procesado completo:")
         print(df)
     except Exception as e:
@@ -92,7 +89,7 @@ def update_data():
 
     if not df.empty:
         try:
-            flattened_list = [item for sublist in df.values.tolist() for item in sublist]
+            flattened_list = df.values.flatten()
             days = np.arange(1, len(flattened_list) + 1)
 
             plt.figure(figsize=(10, 6))
@@ -105,16 +102,12 @@ def update_data():
             plt.title(f'{month_names[month_str]} - {year}', fontsize=14, fontweight='bold')
             plt.xlabel('Días', fontsize=12)
             plt.ylabel('Índice Dst (nT)', fontsize=12)
-
-            tick_positions = np.arange(0, len(flattened_list), 24)
-            tick_labels = np.arange(1, len(tick_positions) + 1)
-            plt.xticks(tick_positions, tick_labels)
+            plt.xticks(np.arange(0, len(flattened_list), 24), np.arange(1, (len(flattened_list) // 24) + 1))
             plt.grid(True, which='both', linestyle='--', linewidth=0.5)
             plt.subplots_adjust(top=0.880, bottom=0.110, left=0.085, right=0.975, hspace=0.200, wspace=0.200)
             plt.legend(loc='lower left', bbox_to_anchor=(0, 0), fancybox=True, shadow=True, prop={'size': 8})
-            plt.xlim(0, len(days) + 1)
+            plt.xlim(0, len(flattened_list))
             plt.ylim([-350, 100])
-
             plt.savefig(RUTA_GUARDADO, dpi=300, bbox_inches='tight')
             plt.close()
         except Exception as e:
