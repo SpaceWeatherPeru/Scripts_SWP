@@ -32,12 +32,16 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git config --global user.name "GitHub Actions"
           
-          # 1. Actualizar el repositorio local con los últimos cambios
+          # 1. Confirma (commit) los cambios que haya generado el script
+          git add .
+          git commit -m "Auto-commit de cambios generados antes del rebase" || echo "No hay cambios pendientes"
+      
+          # 2. Hacer pull --rebase con el repositorio remoto
           git pull --rebase https://x-access-token:${GITHUB_TOKEN}@github.com/SpaceWeatherPeru/Scripts_SWP.git main
       
-          # 2. Añadir y hacer commit de cambios locales
+          # 3. Añadir y commitear de nuevo si tu script generó cambios adicionales tras el pull
           git add .
           git commit -m "Subiendo imagen generada automáticamente" || echo "No hay cambios para commitear"
       
-          # 3. Empujar
+          # 4. Empujar al remoto
           git push https://x-access-token:${GITHUB_TOKEN}@github.com/SpaceWeatherPeru/Scripts_SWP.git HEAD:main
