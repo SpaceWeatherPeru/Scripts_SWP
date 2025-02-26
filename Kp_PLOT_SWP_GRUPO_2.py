@@ -7,7 +7,7 @@ import time
 
 #===============================================
 # Ruta manual para guardar la imagen
-RUTA_GUARDADO = "/ruta/deseada/KP_GAMONAL_SWP.png"  # Especifica la ruta completa aquí
+RUTA_GUARDADO = "KP_GAMONAL_SWP.png"  # Especifica la ruta completa aquí
 #===============================================
 
 # Diccionario para los meses en español
@@ -137,12 +137,13 @@ def plotKpIndex(time, index):
         title = f'{mes} - {ano}'
 
         # Crear el gráfico
-        fig, ax2 = plt.subplots(figsize=(10, 5))  # Cambiar las dimensiones del gráfico (más ancho y menos alto)
+        fig, ax2 = plt.subplots(figsize=(10, 5))  # Cambiar las dimensiones del gráfico
         barras = ax2.bar(d, index, width=0.6, color='black')
 
         # Configuración de los ejes
         ax2.set_xticks(np.arange(1, len(d) + 1, max(1, int(len(d) / 7))))
-        ax2.set_xticklabels([fecha.strftime('%d - %H') for fecha in fechas_dt][::max(1, int(len(d) / 7))], ha='center', size=12)
+        ax2.set_xticklabels([fecha.strftime('%d - %H') for fecha in fechas_dt][::max(1, int(len(d) / 7))], 
+                            ha='center', size=12)
         ax2.set_xlim(1, len(d))
         ax2.set_ylim(1, 10)
         ax2.set_xlabel('Fecha (Día - Hora)', fontsize=14)
@@ -194,11 +195,11 @@ def update_and_plot():
 
         # Obtener datos de Kp y graficarlos
         print("Obteniendo datos...")
-        time, index, status = getKpindex(start_time, end_time, 'Kp')
+        time_data, index, status = getKpindex(start_time, end_time, 'Kp')
 
-        if time and index:
+        if time_data and index:
             print("Datos obtenidos. Generando gráfico...")
-            plotKpIndex(time, index)
+            plotKpIndex(time_data, index)
         else:
             print("No se recuperaron datos.")
     except Exception as e:
@@ -210,7 +211,7 @@ def main():
             update_and_plot()
         except Exception as e:
             print(f"Error en el ciclo principal: {e}")
-        time.sleep(900)  # Esperar 15 minutos antes de la siguiente actualización
+        # Se ha eliminado el time.sleep(900)
 
 if __name__ == "__main__":
     main()
