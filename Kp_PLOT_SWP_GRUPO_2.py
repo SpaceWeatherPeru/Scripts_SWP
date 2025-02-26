@@ -206,12 +206,11 @@ def update_and_plot():
         print(f"Error durante la actualización y graficado: {e}")
 
 def main():
-    while True:
-        try:
-            update_and_plot()
-        except Exception as e:
-            print(f"Error en el ciclo principal: {e}")
-        # Se ha eliminado el time.sleep(900)
+    try:
+        update_and_plot()
+    except Exception as e:
+        print(f"Error en el ciclo principal: {e}")
 
 if __name__ == "__main__":
     main()
+
