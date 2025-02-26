@@ -4,3 +4,4 @@ numpy
 cartopy
 netCDF4
 beautifulsoup4
+requests
