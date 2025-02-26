@@ -31,18 +31,13 @@ jobs:
         run: |
           git config --global user.email "github-actions@github.com"
           git config --global user.name "GitHub Actions"
-      
-          # 1. Guardamos los cambios locales en un stash
-          git stash --include-untracked
-      
-          # 2. Hacemos pull --rebase desde el remoto
+          
+          # 1. Actualizar el repositorio local con los últimos cambios
           git pull --rebase https://x-access-token:${GITHUB_TOKEN}@github.com/SpaceWeatherPeru/Scripts_SWP.git main
       
-          # 3. Recuperamos los cambios del stash
-          git stash pop || echo "No hay stash para recuperar"
-      
-          # 4. Commit y push de los cambios
+          # 2. Añadir y hacer commit de cambios locales
           git add .
           git commit -m "Subiendo imagen generada automáticamente" || echo "No hay cambios para commitear"
+      
+          # 3. Empujar
           git push https://x-access-token:${GITHUB_TOKEN}@github.com/SpaceWeatherPeru/Scripts_SWP.git HEAD:main
-
