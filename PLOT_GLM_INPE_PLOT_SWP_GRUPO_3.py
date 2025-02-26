@@ -14,7 +14,7 @@ import os
 
 #=============================================================================
 # RUTA DE GUARDADO DEL PLOT
-RUTA_GUARDADO = 'C:/Users/data_/OneDrive/LAST_PLOT_EFM'
+RUTA_GUARDADO = "./"
 #=============================================================================
 
 # Base URL del directorio que contiene los archivos
@@ -117,7 +117,7 @@ while True:
                 mlines.Line2D([], [], color='none', marker='None', linestyle='None', label=f'Hora GMT: {hora}')
             ], loc='lower left')
             plt.tight_layout()
-            plt.savefig(os.path.join(RUTA_GUARDADO, 'GLM_INPE_PLOT_SWP_GRUPO_3.png'), dpi=300, bbox_inches='tight', pad_inches=0.1)
+            plt.savefig('GLM_INPE_PLOT_SWP_GRUPO_3.png', dpi=300, bbox_inches='tight', pad_inches=0.1)
             plt.close()
 
         else:
