@@ -3,7 +3,7 @@ name: 60min - DST
 on:
   schedule:
     - cron: "*/60 * * * *"  # Se ejecuta cada 5 minutos
-  workflow_dispatch:  # Permite ejecutar manualmente
+  #workflow_dispatch:  # Permite ejecutar manualmente
 
 jobs:
   run_script:
