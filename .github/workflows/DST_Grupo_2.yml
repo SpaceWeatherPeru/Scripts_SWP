@@ -2,8 +2,8 @@ name: 60min - DST
 
 on:
   schedule:
-    - cron: "*/60 * * * *"  # Se ejecuta cada 60 minutos
-  workflow_dispatch:  # Permite ejecutar manualmente
+    - cron: "*/60 * * * *"
+  workflow_dispatch:
 
 jobs:
   run_script:
@@ -13,8 +13,16 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Ejecutar script
+      - name: Agregar Python al PATH en GitHub Actions
+        run: |
+          echo "C:\Users\EFM-CRAAM\AppData\Local\Programs\Python\Python313" >> $GITHUB_PATH
+          echo "C:\Users\EFM-CRAAM\AppData\Local\Programs\Python\Python313\Scripts" >> $GITHUB_PATH
+          echo "PATH actualizado: $env:PATH"
+          python --version
+
+      - name: Ejecutar el script
         run: python DST_PLOT_SWP_GRUPO_2.py
+
 
       - name: Commit y push si hay cambios
         env:
