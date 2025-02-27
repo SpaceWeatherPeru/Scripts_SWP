@@ -13,14 +13,10 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Verificar Python en el sistema
-        run: |
-          where python
-          python --version
-
       - name: Instalar dependencias
-        run: python -m pip install -r requirements_Grupo_2.txt || echo "No hay dependencias que instalar"
-
+        run: |
+          echo "Instalando dependencias con pip..."
+          python -m pip install -r requirements_Grupo_2.txt || echo "No hay dependencias que instalar"
 
       - name: Ejecutar script
         run: python DST_PLOT_SWP_GRUPO_2.py
