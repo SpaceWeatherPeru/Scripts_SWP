@@ -13,19 +13,13 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Agregar Anaconda al PATH y verificar Python
+      - name: Verificar Python en el sistema
         run: |
-          echo "C:\Users\EFM-CRAAM\anaconda3" >> $GITHUB_PATH
-          echo "C:\Users\EFM-CRAAM\anaconda3\Scripts" >> $GITHUB_PATH
-          echo "C:\Users\EFM-CRAAM\anaconda3\Library\bin" >> $GITHUB_PATH
-          refreshenv
-          echo "PATH actualizado: $env:PATH"
           where python
           python --version
 
-      - name: Instalar dependencias usando Anaconda
-        run: C:\Users\EFM-CRAAM\anaconda3\python.exe -m pip install -r requirements_Grupo_2.txt || echo "No hay dependencias que instalar"
-
+      - name: Instalar dependencias
+        run: python -m pip install -r requirements_Grupo_2.txt || echo "No hay dependencias que instalar"
 
 
       - name: Ejecutar script
