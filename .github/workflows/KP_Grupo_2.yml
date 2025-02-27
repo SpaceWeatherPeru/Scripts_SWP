@@ -3,7 +3,7 @@ name: 15min - KP
 on:
   schedule:
     - cron: "*/15 * * * *"  # Se ejecuta cada 15 minutos
-  #workflow_dispatch:  # Permite ejecutar manualmente
+  workflow_dispatch:  # Permite ejecutar manualmente
 
 jobs:
   run_script:
