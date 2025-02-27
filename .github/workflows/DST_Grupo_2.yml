@@ -13,11 +13,6 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Verificar Python en el sistema
-        run: |
-          echo "Verificando Python en el sistema..."
-          python --version
-
       - name: Instalar dependencias
         run: |
           echo "Instalando dependencias con pip..."
