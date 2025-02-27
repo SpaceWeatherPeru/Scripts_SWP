@@ -3,11 +3,11 @@ name: 60min - DST
 on:
   schedule:
     - cron: "*/60 * * * *"  # Se ejecuta cada 60 minutos
-  #workflow_dispatch:  # Permite ejecutar manualmente
+  workflow_dispatch:  # Permite ejecutar manualmente
 
 jobs:
   run_script:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Checkout repo
