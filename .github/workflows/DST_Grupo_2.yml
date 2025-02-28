@@ -1,9 +1,9 @@
 name: 60min - DST
 
 on:
-  schedule:
-    - cron: "*/60 * * * *"
-  workflow_dispatch:
+  #schedule:
+  #  - cron: "*/60 * * * *"
+  #workflow_dispatch:
 
 jobs:
   run_script:
