@@ -1,8 +1,8 @@
 name: 10min - GLM
 
 on:
-  schedule:
-    - cron: "*/10 * * * *"  # Se ejecuta cada 10 minutos
+  #schedule:
+  #  - cron: "*/10 * * * *"  # Se ejecuta cada 10 minutos
   #workflow_dispatch:  # Permite ejecutar manualmente
 
 jobs:
